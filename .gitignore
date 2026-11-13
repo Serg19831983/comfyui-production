@@ -1,0 +1,17 @@
+﻿*.safetensors
+*.ckpt
+*.gguf
+*.bin
+*.pth
+*.onnx
+*.mp4
+*.log
+venv/
+.venv/
+__pycache__/
+temp/
+output/
+*key*
+*secret*
+*token*
+*.env
