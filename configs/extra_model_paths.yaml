@@ -1,4 +1,4 @@
-ai_models_central:
+central_ai_models:
     base_path: C:/AI_Models/
     checkpoints: checkpoints/
     unet: unet/
