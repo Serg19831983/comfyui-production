@@ -1,0 +1,197 @@
+{
+  "id": "4d731e6a-9d47-4b9f-a051-b46616944804",
+  "revision": 0,
+  "last_node_id": 4,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadVideo",
+      "pos": [
+        100,
+        130
+      ],
+      "size": [
+        290,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "futurist_pilot.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "futurist_pilot.mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 2,
+      "type": "MinimaxHailuo03MaxReframeVideoNode",
+      "pos": [
+        438,
+        130
+      ],
+      "size": [
+        410,
+        300
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model.video",
+          "type": "VIDEO",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MinimaxHailuo03MaxReframeVideoNode"
+      },
+      "widgets_values": [
+        "MiniMax H3 Max",
+        "16:9",
+        "768P",
+        "Continue what is already behind the subject on both sides: the pale gradient backdrop in the opening shot and the hangar corridor with its ceiling light strips in the closing shot, no new props, keep the pilot centred.",
+        42,
+        "randomize",
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "model": "MiniMax H3 Max",
+        "model.aspect_ratio": "16:9",
+        "model.resolution": "768P",
+        "model.prompt": "Continue what is already behind the subject on both sides: the pale gradient backdrop in the opening shot and the hangar corridor with its ceiling light strips in the closing shot, no new props, keep the pilot centred.",
+        "model.seed": 42,
+        "control_after_generate#1": "randomize",
+        "control_after_generate": "randomize"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 3,
+      "type": "SaveVideo",
+      "pos": [
+        896,
+        130
+      ],
+      "size": [
+        430,
+        390
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "api_minimax_h3_max_reframe",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "api_minimax_h3_max_reframe",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
+    },
+    {
+      "id": 4,
+      "type": "MarkdownNote",
+      "pos": [
+        -490,
+        120
+      ],
+      "size": [
+        560,
+        650
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "## Aspect Ratio Reframe: MiniMax H3 Max\n\nReframes a clip to a different aspect ratio without cropping. The source sits in place on the new canvas at its original proportions and H3 Max generates the area around it, so length, motion and audio stay untouched.\n\n**Graph**\n\n1. **Load Video**: the source clip, 0.5 to 300 seconds.\n2. **MiniMax H3 Max Reframe Video**: fits the clip on the `aspect_ratio` canvas and generates the surroundings.\n3. **Save Video**: writes the MP4.\n\n**Input Assets:** [futurist_pilot.mp4](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/futurist_pilot.mp4) — a 5.17 second vertical (576 x 736) two-shot demo.\n\n### Controls\n\n| Control | What it does |\n|---|---|\n| `aspect_ratio` | Target canvas: `16:9`, `9:16`, `1:1`, `4:3`, `3:4`, `21:9` or `9:21` |\n| `resolution` | `480P`, `768P` or `1080P` |\n| `prompt` | Optional: what should continue outside the original frame |\n| `seed` | The same prompt and seed give similar, not identical, results |\n\n### Prompting\n\nDescribe what continues outside the frame, not what is inside it, and cover every shot if the clip has more than one. The demo prompt was: \"Continue what is already behind the subject on both sides: the pale gradient backdrop in the opening shot and the hangar corridor with its ceiling light strips in the closing shot, no new props, keep the pilot centred.\" Leaving `prompt` empty lets the model infer the surroundings from each frame.\n"
+      ],
+      "widgets_values_named": {
+        "text": "## Aspect Ratio Reframe: MiniMax H3 Max\n\nReframes a clip to a different aspect ratio without cropping. The source sits in place on the new canvas at its original proportions and H3 Max generates the area around it, so length, motion and audio stay untouched.\n\n**Graph**\n\n1. **Load Video**: the source clip, 0.5 to 300 seconds.\n2. **MiniMax H3 Max Reframe Video**: fits the clip on the `aspect_ratio` canvas and generates the surroundings.\n3. **Save Video**: writes the MP4.\n\n**Input Assets:** [futurist_pilot.mp4](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/futurist_pilot.mp4) — a 5.17 second vertical (576 x 736) two-shot demo.\n\n### Controls\n\n| Control | What it does |\n|---|---|\n| `aspect_ratio` | Target canvas: `16:9`, `9:16`, `1:1`, `4:3`, `3:4`, `21:9` or `9:21` |\n| `resolution` | `480P`, `768P` or `1080P` |\n| `prompt` | Optional: what should continue outside the original frame |\n| `seed` | The same prompt and seed give similar, not identical, results |\n\n### Prompting\n\nDescribe what continues outside the frame, not what is inside it, and cover every shot if the clip has more than one. The demo prompt was: \"Continue what is already behind the subject on both sides: the pale gradient backdrop in the opening shot and the hangar corridor with its ceiling light strips in the closing shot, no new props, keep the pilot centred.\" Leaving `prompt` empty lets the model infer the surroundings from each frame.\n"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "VIDEO"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "VIDEO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5593941635377722,
+      "offset": [
+        1012.0446604857359,
+        435.08759167091154
+      ]
+    },
+    "frontendVersion": "1.58.5"
+  },
+  "version": 0.4
+}
