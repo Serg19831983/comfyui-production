@@ -5,8 +5,11 @@
 *.pth
 *.onnx
 *.mp4
+*.png
 *.log
+*.db
 venv/
+venv_prod/
 .venv/
 __pycache__/
 temp/
