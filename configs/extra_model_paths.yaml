@@ -9,3 +9,4 @@ central_ai_models:
     clip_vision: clip_vision/
     controlnet: controlnet/
     upscale_models: upscale_models/
+    mmaudio: mmaudio/
